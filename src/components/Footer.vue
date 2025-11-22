@@ -1,11 +1,18 @@
 <script setup>
 import { ref } from "vue";
 const year = ref("2025");
+const href = ref("https://scrimba.com");
+
 year.value = "2014";
 </script>
 
 <template>
-  <footer>Created by <span>Professor Pickle</span> &copy; {{ year }}</footer>
+  <footer>
+    Created by
+    <a target="_blanks" :href>
+      <span>Professor Pickle</span> &copy; {{ year }}
+    </a>
+  </footer>
 </template>
 
 <style scoped>
@@ -19,7 +26,11 @@ footer {
   padding-bottom: 20px;
 }
 
-footer span {
+span {
   font-family: cursive;
+}
+
+a {
+  color: white;
 }
 </style>

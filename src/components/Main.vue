@@ -1,20 +1,24 @@
 <script setup>
 import { ref } from "vue";
 const quote = ref("First, solve the problem, then write the code");
-const author = ref("John Johnson")
+const author = ref("John Johnson");
+const href = ref("www.wikipedia.org");
+const isBtnDisabled = ref(true);
 
-quote.value = "It's a feature not a bug"
-author.value = "Unknown"
-
+quote.value = "It's a feature not a bug";
+author.value = "Unknown";
 </script>
 
 <template>
   <main>
     <section>
       <p>{{ quote }}</p>
-      <span>{{ author }}</span>
+      <a :href>{{ author }}</a>
     </section>
-    <button>Another!</button>
+    <section>
+      <button :disabled="isBtnDisabled">Another!</button>
+      <button :disabled="isBtnDisabled">Share</button>
+    </section>
   </main>
 </template>
 
@@ -31,7 +35,7 @@ main {
   gap: 10px;
 }
 
-main section {
+section {
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -39,31 +43,32 @@ main section {
   margin-bottom: 25px;
 }
 
-main p {
+p {
   font-weight: bold;
   font-style: italic;
   font-size: 2rem;
   text-align: left;
 }
 
-main p::before {
+p::before {
   content: '"';
 }
 
-main p::after {
+p::after {
   content: '"';
 }
 
-main span {
+span,
+a {
   align-self: end;
   color: #406473;
 }
 
-main span::before {
+span::before {
   content: "- ";
 }
 
-main button {
+button {
   background: #406473;
   color: white;
   padding: 10px;
@@ -75,8 +80,13 @@ main button {
   cursor: pointer;
   transition: transform 0.2s;
 }
-main button:hover {
+button:hover {
   transform: scale(1.05);
 }
-/**********/
+
+button:disabled {
+  background: grey;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
 </style>
